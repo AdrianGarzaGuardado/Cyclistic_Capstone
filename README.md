@@ -1,13 +1,13 @@
 # Cyclistic_Capstone
 Cyclistic Bike Share Case Study
 
-Introduction
+## Introduction
 
 Cyclistic bike-share analysis is a case study from the Google Data Analytics Professional Certificate, in this case you work for a fictional company, Cyclistic. In order to answer the business questions, you will follow the steps of the data analysis process: Ask, Prepare, Process, Analyze, Share, and Act.
 
 You are a junior data analyst working on the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations.
 
-Background
+## Background
 
 In 2016, Cyclistic launched a successful bike-share offering. Since then, the program has grown to a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system anytime.
 
@@ -15,7 +15,8 @@ Until now, Cyclistic’s marketing strategy relied on building general awareness
 
 Cyclistic’s finance analysts have concluded that annual members are much more profitable than casual riders. Although the pricing flexibility helps Cyclistic attract more customers, the company´s Marketing Director believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that targets all-new customers, there is a solid opportunity to convert casual riders into members. The Director notes that casual riders are already aware of the Cyclistic program and have chosen Cyclistic for their mobility needs.
 
-1. Ask (Deliverable: a clear statement of the business task)
+## 1. ASK
+*Deliverable: a clear statement of the business task*
 
 Design marketing strategies aimed at converting casual riders into annual members, In order to do that, the team needs to better understand:
 
@@ -25,8 +26,8 @@ Design marketing strategies aimed at converting casual riders into annual member
 
 I have been assigned by the Marketing Director to answer the first question, how do annual members and casual riders use Cyclistic bikes differently?
 
-
-2. Prepare (Deliverable: a description of all data sources used)
+## 2. PREPARE
+*Deliverable: a description of all data sources used*
 
 Data source: link
 Scope: 12 files, one per month of the year 2024
@@ -49,15 +50,15 @@ No.	Variable	Type	Description
 12	end_lng	FLOAT	Longitude coordinate of end station
 13	member_casual	STRING	Type of membership category
 
+## 3. PROCESS
+*Deliverables: Check the data for errors, choose your tools, transform the data so you can work with it effectively and document the cleaning process*
 
-3. Process (Deliverables: Check the data for errors, choose your tools, transform the data so you can work with it effectively and document the cleaning process)
-
-Combining data
+### Combining data
 
 Since the data set is too large (6,355,568 rows all files combined) for programs such as Excel or Sheets, I chose BigQuery’s SQL platform to work effectively with the datasets. 
 
 After uploading each of the last 12 month datasets (from January to December 2024), I combined them into one using the following query:
-
+```sql
 CREATE TABLE cyclistic.cyclistic_2021_all AS (
   SELECT * FROM `swift-castle-448513-q4.cyclistic.202401` UNION ALL
   SELECT * FROM `swift-castle-448513-q4.cyclistic.202402` UNION ALL
@@ -79,25 +80,26 @@ CREATE TABLE cyclistic.cyclistic_2021_all AS (
   SELECT * FROM `swift-castle-448513-q4.cyclistic.202411` UNION ALL
   SELECT * FROM `swift-castle-448513-q4.cyclistic.202412` 
 );
+```
+### Check the data for errors.
 
-Check the data for errors.
-
-1) Check that the number of strings for ride_id is uniform
-
+#### 1) Check that the number of strings for ride_id is uniform
+```sql
 SELECT LENGTH(ride_id) AS ride_id_len
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`
 GROUP BY LENGTH(ride_id)
-
+```
 Row	ride_id_len	f0_
 1	16	6355568
 
 NOTES: All ride_id strings are 16 characters long
 
-2) Check the amount of rideable_type categories
+#### 2) Check the amount of rideable_type categories
+```sql
 SELECT rideable_type, COUNT(*)
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`
 GROUP BY rideable_type;
-
+```
 Row	rideable_type	f0_
 1	electric_bike	3213028
 2	electric_scooter	144337
@@ -105,41 +107,41 @@ Row	rideable_type	f0_
 
 NOTES: there are 3 categories of ‘rideable_type’: electric_bike, electric_scooter and classic_bike. electric_scooter is not in the scope of the analysis so these need to be removed in the cleaning process.
 
-3) Check for MIN and MAX values of ride length to understand data.
-
+#### 3) Check for MIN and MAX values of ride length to understand data.
+```sql
 SELECT
   MAX (ride_length) AS max_lenght,
   MIN (ride_length) AS min_lenght
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`
-
+```
 Row	max_lenght	min_lenght
 1	1560	-2748
 
 NOTES: determined that there are negative ride length values, these are errors that must be eliminated. Maximum value is 26 hours which belong to a accepted range.
 
-4) Identify records where ride duration time is less than a minute or negative
-
+#### 4) Identify records where ride duration time is less than a minute or negative
+```sql
 SELECT ride_id, started_at, ended_at, ride_length
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`
 WHERE TIMESTAMP_DIFF(ended_at, started_at, MINUTE) <= 1
 ORDER BY ride_length;
+```
+NOTES: a total of 190,100 records identified with less than a minute or negative ride length, these need to be removed in the cleaning process as don’t add value to the analysis.
 
--- NOTES: a total of 190,100 records identified with less than a minute or negative ride length, these need to be removed in the cleaning process as don’t add value to the analysis.
-
-5) Check the amount of member_casual categories
-
+#### 5) Check the amount of member_casual categories
+```sql
 SELECT member_casual, COUNT(*)
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`
 GROUP BY member_casual;
-
+```
 Row	member_casual	f0_
 1	casual	2343957
 2	member	4011611
 
 NOTES: Confirmed that the only 2 values in this field are ‘member’ and ‘casual’.
 
-6) Check total number of null values from each column
-
+#### 6) Check total number of null values from each column
+```sql
 SELECT 
   COUNT (*) - COUNT (ride_id) AS ride_id_nulls,
   COUNT (*) - COUNT (rideable_type) AS rideable_type_nulls,
@@ -155,7 +157,7 @@ SELECT
   COUNT (*) - COUNT (end_lng) AS end_lng_nulls,
   COUNT (*) - COUNT (member_casual) AS member_casual_nulls
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`;
-
+```
 ride_id_nulls 	0
 rideable_type_nulls 	0
 started_at_nulls 	0
@@ -172,12 +174,12 @@ member_casual_nulls 	0
 
 NOTES: Confirmed that key columns such as ride_id, rideable_type, started_at, ended_at and member_casual don´t have null values, I will not delete nulls since these records contain valuable information. 
 
-Data Cleaning
+### Data Cleaning
 
 1) Added 2 more columns to the table: ride_length for duration of the trip and day_of_week.
 2) Removed trips with duration less than a minute.
 3) Remove records with rideable_type equal to “electric_scooter”
-
+```sql
 CREATE TABLE IF NOT EXISTS cyclistic.cyclistic_2024_final AS (
 SELECT
   ride_id,
@@ -201,8 +203,10 @@ WHERE
   rideable_type = "electric_bike" OR
   rideable_type = " classic_bike" 
 );
+```
 
-4. Analyze (Deliverable: A summary of your analysis)
+## 4. ANALYZE
+*Deliverable: A summary of your analysis*
 
 The analysis will focus on answering the question: How do annual members and casual riders use Cyclitic bikes differently?
 
@@ -266,7 +270,8 @@ The following map displays the most 15 common stations by total count of rides i
 
  
 
-5. Share (Deliverable: Supporting visualizations and key findings)
+## 5. SHARE
+*Deliverable: Supporting visualizations and key findings*
 
 Cyclistc analysis tableau dashboard link
 
@@ -286,7 +291,8 @@ Similarities:
 •	Both have more preference for regular bikes than electric.
 •	Both have the same top start and end stations.
 
-6. Act (Deliverable: Your top three recommendations based on your analysis)
+## 6. ACT
+*Deliverable: Your top three recommendations based on your analysis*
 
 Following are my recommendations for designing marketing strategies to convert casual riders to Cyclistic members:
 
