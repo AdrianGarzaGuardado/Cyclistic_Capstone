@@ -1,5 +1,5 @@
 # Cyclistic_Capstone
-Cyclistic Bike Share Case Study
+The Cyclistic Bike Share Case Study is a capstone proyect of the **Google Data Analytics Professional Certificate** from Coursera
 
 ## Introduction
 
@@ -29,26 +29,27 @@ I have been assigned by the Marketing Director to answer the first question, how
 ## 2. PREPARE
 *Deliverable: a description of all data sources used*
 
-Data source: [divvy-tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
-Scope: 12 files, one per month of the year 2024
-License: data has been made available by Motivate International Inc. under this [license](https://divvybikes.com/data-license-agreement)
+- Data source: [divvy-tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html).
+- Scope: 12 files, one per month of the year 2024.
+- License: data has been made available by Motivate International Inc. under this [license](https://divvybikes.com/data-license-agreement).
 
 Each data table consists of 13 variables with the following data type and description:
 
-No.	Variable	Type	Description
-1	ride_id	STRING	ID assigned to each ride
-2	rideable_type	STRING	Type of bike category
-3	started_at	TIMESTAMP	Date and time at the start of the trip
-4	ended_at	TIMESTAMP	Date and time at the end of the trip
-5	start_station_name	STRING	Station name at start of the trip
-6	start_station_id	STRING	ID of start station name
-7	end_station_name	STRING	Station name at end of the trip
-8	end_station_id	STRING	ID of end station name
-9	start_lat	FLOAT	Latitude coordinate of start station
-10	start_lng	FLOAT	Longitude coordinate of start station
-11	end_lat	FLOAT	Latitude coordinate of end station
-12	end_lng	FLOAT	Longitude coordinate of end station
-13	member_casual	STRING	Type of membership category
+| No.	| Variable | Type	| Description |
+| --- | --- | --- | --- |
+| 1 |	ride_id	| STRING |	ID assigned to each ride |
+| 2 |	rideable_type |	STRING |	Type of bike category |
+| 3 |	started_at |	TIMESTAMP |	Date and time at the start of the trip |
+| 4 |	ended_at |	TIMESTAMP |	Date and time at the end of the trip |
+| 5 |	start_station_name |	STRING |	Station name at start of the trip |
+| 6 |	start_station_id |	STRING |	ID of start station name |
+| 7 |	end_station_name |	STRING |	Station name at end of the trip |
+| 8 |	end_station_id |	STRING |	ID of end station name |
+| 9 |	start_lat |	FLOAT |	Latitude coordinate of start station |
+| 10 |	start_lng |	FLOAT |	Longitude coordinate of start station |
+| 11 |	end_lat |	FLOAT |	Latitude coordinate of end station |
+| 12 |	end_lng |	FLOAT |	Longitude coordinate of end station |
+| 13 |	member_casual |	STRING |	Type of membership category |
 
 ## 3. PROCESS
 *Deliverables: Check the data for errors, choose your tools, transform the data so you can work with it effectively and document the cleaning process*
@@ -89,8 +90,9 @@ SELECT LENGTH(ride_id) AS ride_id_len
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`
 GROUP BY LENGTH(ride_id)
 ```
-Row	ride_id_len	f0_
-1	16	6355568
+| Row	| ride_id_len |	f0_ |
+| --- | --- | --- |
+| 1	| 16 | 6355568 |
 
 NOTES: All ride_id strings are 16 characters long
 
@@ -100,10 +102,11 @@ SELECT rideable_type, COUNT(*)
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`
 GROUP BY rideable_type;
 ```
-Row	rideable_type	f0_
-1	electric_bike	3213028
-2	electric_scooter	144337
-3	classic_bike	2998203
+| Row	| rideable_type |	f0_ |
+| --- | --- | --- |
+| 1 |	electric_bike	| 3213028 |
+| 2	| electric_scooter	| 144337 |
+| 3	| classic_bike	| 2998203 |
 
 NOTES: there are 3 categories of ‘rideable_type’: electric_bike, electric_scooter and classic_bike. electric_scooter is not in the scope of the analysis so these need to be removed in the cleaning process.
 
@@ -114,8 +117,9 @@ SELECT
   MIN (ride_length) AS min_lenght
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`
 ```
-Row	max_lenght	min_lenght
-1	1560	-2748
+| Row |	max_lenght | min_lenght |
+| --- | --- | --- |
+| 1	| 1560 | -2748 |
 
 NOTES: determined that there are negative ride length values, these are errors that must be eliminated. Maximum value is 26 hours which belong to a accepted range.
 
@@ -134,9 +138,10 @@ SELECT member_casual, COUNT(*)
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`
 GROUP BY member_casual;
 ```
-Row	member_casual	f0_
-1	casual	2343957
-2	member	4011611
+| Row |	member_casual |	f0_ |
+| --- | --- | --- |
+| 1	| casual |	2343957 |
+| 2	| member |	4011611 |
 
 NOTES: Confirmed that the only 2 values in this field are ‘member’ and ‘casual’.
 
@@ -158,19 +163,22 @@ SELECT
   COUNT (*) - COUNT (member_casual) AS member_casual_nulls
 FROM `swift-castle-448513-q4.cyclistic.cyclistic_2024_all`;
 ```
-ride_id_nulls 	0
-rideable_type_nulls 	0
-started_at_nulls 	0
-ended_at_nulls 	0
-start_station_name_nulls 	1140020
-start_station_id_nulls 	1140020
-end_station_name_nulls 	1168579
-end_station_id_nulls 	1168579
-start_lat_nulls 	0
-start_lng_nulls 	0
-end_lat_nulls 	7867
-end_lng_nulls 	7867
-member_casual_nulls 	0
+
+| metric | #nulls |
+| --- | --- |
+| ride_id_nulls |	0 |
+| rideable_type_nulls |	0 |
+| started_at_nulls | 0 |
+| ended_at_nulls |	0 |
+| start_station_name_nulls | 1140020 |
+| start_station_id_nulls | 1140020 |
+| end_station_name_nulls | 1168579 |
+| end_station_id_nulls | 1168579 |
+| start_lat_nulls | 0 |
+| start_lng_nulls | 0 |
+| end_lat_nulls | 7867 |
+| end_lng_nulls | 7867 |
+| member_casual_nulls | 0 |
 
 NOTES: Confirmed that key columns such as ride_id, rideable_type, started_at, ended_at and member_casual don´t have null values, I will not delete nulls since these records contain valuable information. 
 
