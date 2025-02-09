@@ -212,7 +212,7 @@ The analysis will focus on answering the question: How do annual members and cas
 
 Overview of 2024 data by member type:
 
- 
+![Picture8](https://github.com/user-attachments/assets/1773dc90-37e0-4046-abd0-2f3f4b761533)
 
 * Casual riders represent only 36% of the total amount of rides, but contributed to 53% of total ride length
 * Casual rides have an average ride length of 26.7 min/ride while members have an average of 13.1 min/ride
@@ -220,9 +220,7 @@ Overview of 2024 data by member type:
 
 Overview of 2024 data by rideable type:
 
-
- 
-
+![Picture7](https://github.com/user-attachments/assets/bb4912ed-b80e-45c0-b73c-df675a753f3b)
 
 * Electric bikes represented 36.6% of the total number of rides
 * Cyclitic members have a bigger share of electric bikes with 45% compared to casual riders with 30%.
@@ -230,12 +228,10 @@ Overview of 2024 data by rideable type:
 
 Ride behavior by day of the week:
 
- 
+![Picture6](https://github.com/user-attachments/assets/57d5c469-218a-4903-a5a5-87ba468372b5)
 
 * Members use the riding service more often during weekdays, the hypothesis is that members use the service primarily to commute to work.
 * Casual riders have more riding activity during the weekends, the hypothesis is that their primary purpose is for leisure and tourism.
-
-
 
 Ride behavior by hour of the day:
 
@@ -243,7 +239,7 @@ For the following analysis I created a calculated field in Tableau to extract th
 
 STR(DATEPART('hour',[Started At]))
 
- 
+ ![Picture5](https://github.com/user-attachments/assets/4d4c67e8-c7e0-46cc-810b-a98999cbc37c)
 
 * Cyclistic members have the most volume of rides during work commuting hours, between 6:00am to 9:00am and 3:00pm to 7:00pm
 * Casual riders have the most volume of rides on weekends during daylight hours from 10am to 6pm
@@ -251,15 +247,14 @@ STR(DATEPART('hour',[Started At]))
 
 Ride behavior by month:
 
-
- 
+![Picture4](https://github.com/user-attachments/assets/f0ddfd7e-c75e-4ba1-8355-aca6e03264e5)
 
 * The months from May to October contribute to 78% of total year rides.
 * The graph above show that Cyclitic service usage can be correlated to weather conditions, having the hottest months of the year a significant increase of volume.
 
 Rideable type of bike trend:
 
-   
+![Picture3](https://github.com/user-attachments/assets/088df2ff-c976-4e60-9163-9e67f3cdf28a)
 
 * There is an increasing trend in usage of electric bikes, seeing an increase from 30% of total rides starting in January to almost 50% of total rides at the end of the year.
 * Both casual and members have an increasing trend on the number of electric bikes per month.
@@ -268,16 +263,14 @@ Identification of most common stations:
 
 The following map displays the most 15 common stations by total count of rides in 2024
 
- 
+ ![Picture2](https://github.com/user-attachments/assets/09e9da57-17b3-4343-90b4-0cb7ab74b1f4)
 
 ## 5. SHARE
 *Deliverable: Supporting visualizations and key findings*
 
 Cyclistc analysis tableau dashboard link
 
- 
-
-How do annual members and casual riders use Cyclistic bikes differently?
+ ![Picture1](https://github.com/user-attachments/assets/2381d14c-ac16-47a7-a82b-d7549c0a9312)
 
 Differences:
 * Casual riders average ride length is twice longer than members (26.7 vs 13.1 min/ride).
