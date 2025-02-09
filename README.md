@@ -29,9 +29,9 @@ I have been assigned by the Marketing Director to answer the first question, how
 ## 2. PREPARE
 *Deliverable: a description of all data sources used*
 
-Data source: link
+Data source: [divvy-tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
 Scope: 12 files, one per month of the year 2024
-License: data has been made available by Motivate International Inc. under this license
+License: data has been made available by Motivate International Inc. under this [license](https://divvybikes.com/data-license-agreement)
 
 Each data table consists of 13 variables with the following data type and description:
 
@@ -268,7 +268,7 @@ The following map displays the most 15 common stations by total count of rides i
 ## 5. SHARE
 *Deliverable: Supporting visualizations and key findings*
 
-Cyclistc analysis tableau dashboard link
+Cyclistc analysis tableau dashboard [link](https://public.tableau.com/app/profile/jose.adrian.garza.guardado/viz/CyclisticBikeShareCaseStudy_17390540027840/CyclisticAnalyze#2).
 
  ![Picture1](https://github.com/user-attachments/assets/2381d14c-ac16-47a7-a82b-d7549c0a9312)
 
