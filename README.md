@@ -214,9 +214,9 @@ Overview of 2024 data by member type:
 
  
 
-•	Casual riders represent only 36% of the total amount of rides, but contributed to 53% of total ride length
-•	Casual rides have an average ride length of 26.7 min/ride while members have an average of 13.1 min/ride
-•	Casual riders take less number of trips but with almost two times longer ride lengths than members.
+* Casual riders represent only 36% of the total amount of rides, but contributed to 53% of total ride length
+* Casual rides have an average ride length of 26.7 min/ride while members have an average of 13.1 min/ride
+* Casual riders take less number of trips but with almost two times longer ride lengths than members.
 
 Overview of 2024 data by rideable type:
 
@@ -224,16 +224,16 @@ Overview of 2024 data by rideable type:
  
 
 
-•	Electric bikes represented 36.6% of the total number of rides
-•	Cyclitic members have a bigger share of electric bikes with 45% compared to casual riders with 30%.
-•	Casual riders show a higher preference for classic bikes.
+* Electric bikes represented 36.6% of the total number of rides
+* Cyclitic members have a bigger share of electric bikes with 45% compared to casual riders with 30%.
+* Casual riders show a higher preference for classic bikes.
 
 Ride behavior by day of the week:
 
  
 
-•	Members use the riding service more often during weekdays, the hypothesis is that members use the service primarily to commute to work.
-•	Casual riders have more riding activity during the weekends, the hypothesis is that their primary purpose is for leisure and tourism.
+* Members use the riding service more often during weekdays, the hypothesis is that members use the service primarily to commute to work.
+* Casual riders have more riding activity during the weekends, the hypothesis is that their primary purpose is for leisure and tourism.
 
 
 
@@ -245,24 +245,24 @@ STR(DATEPART('hour',[Started At]))
 
  
 
-•	Cyclistic members have the most volume of rides during work commuting hours, between 6:00am to 9:00am and 3:00pm to 7:00pm
-•	Casual riders have the most volume of rides on weekends during daylight hours from 10am to 6pm
-•	Casual riders, when excluding weekends, show a significant volume of rides from 3pm to 7pm, these volumes represent an opportunity on capturing membership rides.
+* Cyclistic members have the most volume of rides during work commuting hours, between 6:00am to 9:00am and 3:00pm to 7:00pm
+* Casual riders have the most volume of rides on weekends during daylight hours from 10am to 6pm
+* Casual riders, when excluding weekends, show a significant volume of rides from 3pm to 7pm, these volumes represent an opportunity on capturing membership rides.
 
 Ride behavior by month:
 
 
  
 
-•	The months from May to October contribute to 78% of total year rides.
-•	The graph above show that Cyclitic service usage can be correlated to weather conditions, having the hottest months of the year a significant increase of volume.
+* The months from May to October contribute to 78% of total year rides.
+* The graph above show that Cyclitic service usage can be correlated to weather conditions, having the hottest months of the year a significant increase of volume.
 
 Rideable type of bike trend:
 
    
 
-•	There is an increasing trend in usage of electric bikes, seeing an increase from 30% of total rides starting in January to almost 50% of total rides at the end of the year.
-•	Both casual and members have an increasing trend on the number of electric bikes per month.
+* There is an increasing trend in usage of electric bikes, seeing an increase from 30% of total rides starting in January to almost 50% of total rides at the end of the year.
+* Both casual and members have an increasing trend on the number of electric bikes per month.
 
 Identification of most common stations:
 
@@ -280,16 +280,16 @@ Cyclistc analysis tableau dashboard link
 How do annual members and casual riders use Cyclistic bikes differently?
 
 Differences:
-•	Casual riders average ride length is twice longer than members (26.7 vs 13.1 min/ride).
-•	Casual riders take less trips than members but contribute to more riding minutes (36% of total amount of trips represented 53% of total ride length).
-•	Casual riders have a lower preference of electric bikes (30% vs 45% of share).
-•	Casual riders take significatively more trips on weekends while members ride more often during weekdays.
-•	Casual riders ride often during daylight hours for leisure while members ride more on work commuting hours.
+* Casual riders average ride length is twice longer than members (26.7 vs 13.1 min/ride).
+* Casual riders take less trips than members but contribute to more riding minutes (36% of total amount of trips represented 53% of total ride length).
+* Casual riders have a lower preference of electric bikes (30% vs 45% of share).
+* Casual riders take significatively more trips on weekends while members ride more often during weekdays.
+* Casual riders ride often during daylight hours for leisure while members ride more on work commuting hours.
 
 Similarities:
-•	Both take more trips in summer or in correlation to warm weather conditions, the months from May to October contribute to 78% of total year rides.
-•	Both have more preference for regular bikes than electric.
-•	Both have the same top start and end stations.
+* Both take more trips in summer or in correlation to warm weather conditions, the months from May to October contribute to 78% of total year rides.
+* Both have more preference for regular bikes than electric.
+* Both have the same top start and end stations.
 
 ## 6. ACT
 *Deliverable: Your top three recommendations based on your analysis*
